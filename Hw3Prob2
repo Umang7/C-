@@ -1,0 +1,70 @@
+# C-
+// Hw3Prob2.cpp : Defines the entry point for the console application.
+////File Name: Hw3 Prob2.cpp
+//Author: Umang S Godhani
+//Email Address: ugodhani@pnw.edu
+//Assignment Number: Homework 3 Problem 2
+//Description: Program to calculate the clothing measurement.
+//Last Changed: February 20, 2018
+
+#include "stdafx.h"
+#include <iostream>
+using namespace std;
+
+	char choice = 'n';
+	double height, weight, age, hat, waist, jacket;
+
+	//initializing
+	void calcHat(double& height, double& weight);
+	void calcJacket(double& height, double weight, double& age);
+	void calcWaist(double& weight, double& age);
+
+int main()
+{
+	do
+	{
+		cout << "\nPlease type the height in inches.\n";
+		cin >> height;
+		cout << "\nPlease type the weight in pounds.\n";
+		cin >> weight;
+		cout << "\nPlease type the age.\n";
+		cin >> age;
+		cout << "\nThe measurement of your clothing should be: \n";
+		calcHat(height, weight);
+		calcJacket(height, weight, age);
+		calcWaist(weight, age);
+		cout << hat << " Hat, " << jacket << " Jacket, " << waist << " Waist.\n";
+		cout << "\nPress 'Y' to use the calculator again.\n";
+		cin >> choice;
+	} while (choice == 'y' || choice == 'Y');
+}
+
+//Hat calculation
+void calcHat(double& height, double& weight)
+{
+	hat = (weight / height) * 2.9;
+}
+
+//Jacket calculation
+void calcJacket(double& height, double weight, double& age)
+{
+	int extra;
+	jacket = (height * weight) / 288;
+	if (age > 39)
+	{
+		extra = (age - 30) / 10;
+		jacket += (0.125 * extra);
+	}
+}
+
+//Waist calculation
+void calcWaist(double& weight, double& age)
+{
+	int extra;
+	waist = weight / 5.7;
+	if (age > 29)
+	{
+		extra = (age - 28) / 2;
+		waist += (0.1 * extra);
+	}
+}
